@@ -1,15 +1,15 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
-
 import CanvasLoader from "../Loader";
 
+// Computer model
 const Computers = ({ isMobile }) => {
   const computer = useGLTF("./desktop_pc/scene.gltf");
 
   return (
     <mesh>
-      <hemisphereLight intensity={0.15} groundColor='black' />
+      <hemisphereLight intensity={0.15} groundColor="black" />
       <spotLight
         position={[-20, 50, 10]}
         angle={0.12}
@@ -22,12 +22,23 @@ const Computers = ({ isMobile }) => {
       <primitive
         object={computer.scene}
         scale={isMobile ? 0.7 : 0.75}
-        position={isMobile ? [0, -3, -2.2] : [0, -3.25, -1.5]}
+        position={isMobile ? [0, -2, -2.2] : [0, -3.25, -1.5]}
         rotation={[-0.01, -0.2, -0.1]}
       />
     </mesh>
   );
 };
+
+// Mobile Warning Component
+const MobileWarning = () => (
+  <div className="mobile-warning">
+    <p>
+    This website cannot be loaded on mobile devices due to the heavy GPU computation required.
+     Please use the desktop version to view the webpage. 
+     We apologize for the inconvenience caused and hope you will be able to view my portfolio soon.
+    </p>
+  </div>
+);
 
 const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -53,9 +64,15 @@ const ComputersCanvas = () => {
     };
   }, []);
 
+  // Render only the warning message if mobile device is detected
+  if (isMobile) {
+    return <MobileWarning />;
+  }
+
   return (
+    // Render the 3D canvas if it's not a mobile device
     <Canvas
-      frameloop='demand'
+      frameloop="demand"
       shadows
       dpr={[1, 2]}
       camera={{ position: [20, 3, 5], fov: 25 }}

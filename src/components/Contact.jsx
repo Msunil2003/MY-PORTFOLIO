@@ -27,13 +27,31 @@ const Contact = () => {
     });
   };
 
+  // Email validation function using regex
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Input validation: Check if all fields are filled and if the email is valid
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+      alert("Please fill in all fields before submitting.");
+      return;
+    }
+
+    if (!isValidEmail(form.email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
     setLoading(true);
 
     emailjs
       .send(
-        'service_5kz5xyl', //serviceid from emailjs.com portal 
+        'service_5kz5xyl', // serviceid from emailjs.com portal 
         'template_dyiq1a8', // email templateid from emailjs.com portal
         {
           from_name: form.name,
@@ -58,7 +76,6 @@ const Contact = () => {
         (error) => {
           setLoading(false);
           console.error(error);
-
           alert("Ahh, something went wrong. Please try again.");
         }
       );
@@ -98,7 +115,7 @@ const Contact = () => {
               name='email'
               value={form.email}
               onChange={handleChange}
-              placeholder="What's your web address?"
+              placeholder="What's your email address?"
               className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
             />
           </label>
@@ -109,7 +126,7 @@ const Contact = () => {
               name='message'
               value={form.message}
               onChange={handleChange}
-              placeholder='What you want to say?'
+              placeholder='What do you want to say?'
               className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
             />
           </label>
