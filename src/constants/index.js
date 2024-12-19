@@ -30,6 +30,7 @@ import {
   motioncut,
   jpmorgan,
   smartinterz,
+  odjms,
 } from "../assets";
 
 export const navLinks = [
@@ -245,6 +246,24 @@ const projects = [
     ],
     image: fo,
     source_code_link: "https://github.com/Msunil2003/Food-Ordering-Webapp.git",
+  },
+  {
+    name: "Online DJ Management System",
+    description:
+      "◦	Developed a web-based Online DJ Management System that allows customers to book DJ services, view booking details, and make secure payments. The system tracks payment status, displays detailed booking information, and offers seamless payment processing through an integrated payment gateway. The project features a user-friendly interface, booking search functionality, and automated status updates, ensuring an efficient and transparent booking experience..",
+    tags: [
+      {
+        name: "PHP",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "MYSQL",
+        color: "green-text-gradient",
+      },
+      
+    ],
+    image: odjms,
+    source_code_link: "https://github.com/Msunil2003/ODJMS.git",
   },
 ];
 
