@@ -46,6 +46,10 @@ export const navLinks = [
     id: "contact",
     title: "Contact",
   },
+  {
+    id: "resume",
+    title: "My Resume",
+  },
 ];
 
 const services = [
@@ -187,6 +191,12 @@ const testimonials = [
     image: "https://randomuser.me/api/portraits/women/6.jpg",
   },
 ];
+const resume =[
+  {
+    fileName: "Sunil_Resume.pdf",
+  filePath: "/myresume.pdf", // Ensure this file is inside the `public/` folder
+  }
+]
 
 const projects = [
   {
@@ -267,4 +277,4 @@ const projects = [
   },
 ];
 
-export { services, technologies, experiences, testimonials,  projects };
+export { services, technologies, experiences, testimonials,  projects, resume };
